@@ -1,0 +1,90 @@
+# Require VS Code Extension: REST Client
+
+### Get list
+GET http://localhost:8000/authentication/posts
+
+### Register
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User 1",
+    "password": "asd123"
+}
+
+### Register 2
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User 2",
+    "password": "qwerty"
+}
+
+### Register Fail (All field required)
+### Password
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User",
+    "password": ""
+}
+
+### Email
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "",
+    "password": "asd"
+}
+
+
+### JSON Errors
+### Syntax Error
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User",
+    "password": ""
+}ssw
+
+### Wrong Data Type
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User",
+    "password": 1
+}
+
+
+
+### Login Success (User 1)
+POST http://localhost:8000/authentication/login
+Content-Type: application/json
+
+{
+    "email": "User 1",
+    "password": "asd123"
+}
+
+### Login Fail (User 2)
+POST http://localhost:8000/authentication/login
+Content-Type: application/json
+
+{
+    "email": "User 2",
+    "password": "asd123"
+}
+
+### Cannot Find User
+POST http://localhost:8000/authentication/login
+Content-Type: application/json
+
+{
+    "email": "User 3",
+    "password": "asd123"
+}
