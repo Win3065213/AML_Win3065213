@@ -1,10 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const authController = require('../Controllers/auth_controller');
+const { verifyToken } = require('../middlewares/auth')
+
+// // to apply globally:
+// app.use(verifyToken);
 
 router.get("/posts", authController.getPosts);
 router.post("/register", authController.register);
 router.post("/login", authController.login);
+router.get("/access", verifyToken, authController.getAccess);
+router.post("/token", verifyToken, authController.getToken);
 
 module.exports = router;
 

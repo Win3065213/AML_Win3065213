@@ -3,6 +3,7 @@
 ### Get list
 GET http://localhost:8000/authentication/posts
 
+####################################################################
 ### Register
 POST http://localhost:8000/authentication/register
 Content-Type: application/json
@@ -20,6 +21,33 @@ Content-Type: application/json
     "email": "User 2",
     "password": "qwerty"
 }
+
+####################################################################
+### Login Success (User 1)
+POST http://localhost:8000/authentication/login
+Content-Type: application/json
+
+{
+    "email": "User 1",
+    "password": "asd123"
+}
+
+####################################################################
+### Access
+GET http://localhost:8000/authentication/access
+Authorisation: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlVzZXIgMSIsImlhdCI6MTczMTkzNzE3NywiZXhwIjoxNzMxOTM3MTkyfQ.AqpOPFZo381UfmTdNfI-SY5P2fo66pJ_au4Ja-RQe6M
+
+### Token
+POST http://localhost:8000/authentication/token
+Content-Type: application/json
+
+{
+    "token": ""
+}
+
+################################################################
+###################### Fail Tests ##############################
+################################################################
 
 ### Register Fail (All field required)
 ### Password
@@ -59,32 +87,4 @@ Content-Type: application/json
     "email": "User",
     "password": 1
 }
-
-
-
-### Login Success (User 1)
-POST http://localhost:8000/authentication/login
-Content-Type: application/json
-
-{
-    "email": "User 1",
-    "password": "asd123"
-}
-
-### Login Fail (User 2)
-POST http://localhost:8000/authentication/login
-Content-Type: application/json
-
-{
-    "email": "User 2",
-    "password": "asd123"
-}
-
-### Cannot Find User
-POST http://localhost:8000/authentication/login
-Content-Type: application/json
-
-{
-    "email": "User 3",
-    "password": "asd123"
-}
+################################################################

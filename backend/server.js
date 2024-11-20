@@ -17,7 +17,7 @@ const db = require("./database");
 const { jsonParseErrorHandler, generalErrorHandler } = require('./middlewares/errorHandlers');
 
 const userRoutes = require('./Routes/user_route');
-const authRoutes = require('./Routes/auth');
+const authRoutes = require('./Routes/auth_router');
 
 
 app.use(cors());
