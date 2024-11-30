@@ -16,6 +16,7 @@ exports.getPosts = async (req, res, next) => {
     }
 }
 
+//only for testing middleware
 exports.getAccess = async (req, res, next) => {
     try {
         const userInfo = await authModel.findUser(req.user.email);
@@ -28,11 +29,12 @@ exports.getAccess = async (req, res, next) => {
     }
 }
 
+//only for testing middleware
 exports.getToken = async (req, res, next) => {
     try {
-        const refreshToken = req.body.token;
+        const accessToken = req.body.token;
         // see userInfo if success
-        res.json(refreshToken);
+        res.json(accessToken);
     } catch (error) {
         // console.error(error)
         // res.status(500).json({ error: 'Internal Server Error' })
@@ -40,6 +42,7 @@ exports.getToken = async (req, res, next) => {
     }
 }
 
+//completed all testing success
 exports.register = async (req, res, next) => {
     try {
         // const posts = { username: req.body.name, password: req.body.password};
@@ -66,8 +69,12 @@ exports.register = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
-
+    // console.log(email,password);
     try {
+        if (!email || !password) {
+            return res.status(400).send('All fields required');
+        }
+
         // find user
         const user = await authModel.findUser(email);
         if (!user) {
@@ -82,9 +89,21 @@ exports.login = async (req, res, next) => {
 
         // validation success
         // console.log(user);
-        const accessToken = generateAccessToken({email: user.email})
+        const role = await authModel.findRole(user.roleID, true);
+        const accessToken = generateAccessToken({id: user.accountID, email: user.email, role: role.roleName})
         // const refreshToken = jwt.sign({email: user.email}, process.env.REFRESH_TOKEN_SECRET)
-        res.status(200).json({ accessToken });
+        const successfulRes = {
+            user: {
+                id: user.accountID,
+                email: user.email,
+                role: role.roleName
+            },
+            token: accessToken,
+        };
+        // console.log(user);
+        console.log(successfulRes);
+        res.status(200).send(successfulRes);
+        // res.status(200).json({ accessToken });
 
     } catch (error) {
         next(error)

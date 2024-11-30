@@ -1,4 +1,4 @@
-// const pool = require("../database");
+const pool = require("../database");
 
 // const posts = [
 //     {
@@ -19,17 +19,42 @@ exports.getAllPosts = async() => {
 }
 
 exports.findUser = async (email) => {
-    const user = users.find(user => user.email == email);
-    return user;
+    // const user = users.find(user => user.email == email);
+    // return user;
+    const sqlFind = "SELECT * FROM account WHERE email = ?";
+    const [users] = await pool.execute(sqlFind, [email]);
+
+    if (users.length === 1) {
+        return users[0];
+    } else {
+        return null;
+    }
+}
+exports.findRole = async (role, isID = false) => {
+    
+    const sqlFind = isID ? "SELECT * FROM role WHERE roleID = ?" : "SELECT * FROM role WHERE roleName = ?";
+    const [roles] = await pool.execute(sqlFind, [role]);
+
+    if (roles.length === 1) {
+        return roles[0];
+    } else {
+        return null;
+    }
 }
 
 exports.registerUser = async (email, password) => {
     try
     {
-        const hashedPassword = await bcrypt.hash(password,10)
-        const user = { email , password: hashedPassword}
-        users.push(user);
-        return users;
+        const hashedPassword = await bcrypt.hash(password,10);
+        // const user = { email , password: hashedPassword};
+        // users.push(user);
+        // return users;
+
+        const sqlRegister = "INSERT INTO account (email, password, roleID) VALUES (?,?,?)";
+        const memberRole = await this.findRole("member");
+        // console.log(memberRole);
+        const [result] = await pool.execute(sqlRegister, [email, hashedPassword, memberRole.roleID]);
+        return result;
     }
     catch (error) {
         throw error

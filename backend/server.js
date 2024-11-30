@@ -18,7 +18,8 @@ const { jsonParseErrorHandler, generalErrorHandler } = require('./middlewares/er
 
 const userRoutes = require('./Routes/user_route');
 const authRoutes = require('./Routes/auth_router');
-
+const adminRoutes = require('./Routes/admin_router');
+const memberRoutes = require('./Routes/member_router');
 
 app.use(cors());
 app.use(express.json());
@@ -38,6 +39,8 @@ app.use(jsonParseErrorHandler);
 
 app.use('/api_n_tier', userRoutes)
 app.use('/authentication', authRoutes)
+app.use('/admin', adminRoutes)
+app.use('/member', memberRoutes)
 
 
 app.get('/api/read', async (req, res) => {
