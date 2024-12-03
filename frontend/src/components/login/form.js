@@ -9,6 +9,7 @@ export default function Form ({
     setEmail,
     setPassword
 }) {
+    // these seems extras
     const [error, setError] = useState('');
     const router = useRouter();
 
@@ -61,7 +62,7 @@ export default function Form ({
                 Username or password is incorrect.
                 </div>
             )}
-            <form onSubmit={onSubmit} className="flex flex-col items-center">
+            <form onSubmit={onSubmit} className="auth flex flex-col items-center">
             {/* <form onSubmit = {onSubmit}> */}
                 <input
                     type="text"

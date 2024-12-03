@@ -1,0 +1,12 @@
+### Login Success (Member)
+GET http://localhost:8000/media/search
+Content-Type: application/json
+
+{
+    "value": "Book",
+    "isAdvanced": false,
+    "searchBy": "",
+    "mediaTypes": ""
+}
+
+###############

@@ -50,7 +50,7 @@ export default function Home() {
         <Cover isRegister={false} clicked={registerClicked} onClick={() => handleCoverClick()} />
 
         {/* Register Form under Login Cover */}
-        <form className="h-full flex flex-col justify-center items-center">
+        <form className="auth h-full flex flex-col justify-center items-center">
           <input
             type="text"
             placeholder="Email"
