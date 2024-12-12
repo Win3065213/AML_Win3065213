@@ -1,6 +1,6 @@
 # Require VS Code Extension: REST Client
 
-### Get list
+### Get mock list
 GET http://localhost:8000/authentication/posts
 
 ####################################################################

@@ -5,16 +5,16 @@ function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s'});
 }
 
-exports.getPosts = async (req, res, next) => {
-    try {
-        const posts = await authModel.getAllPosts();
-        res.json(posts);
-    } catch (error) {
-        // console.error(error)
-        // res.status(500).json({ error: 'Internal Server Error' })
-        next(error)
-    }
-}
+// exports.getPosts = async (req, res, next) => {
+//     try {
+//         const posts = await authModel.getAllPosts();
+//         res.json(posts);
+//     } catch (error) {
+//         // console.error(error)
+//         // res.status(500).json({ error: 'Internal Server Error' })
+//         next(error)
+//     }
+// }
 
 //only for testing middleware
 exports.getAccess = async (req, res, next) => {
@@ -101,7 +101,7 @@ exports.login = async (req, res, next) => {
             token: accessToken,
         };
         // console.log(user);
-        console.log(successfulRes);
+        // console.log(successfulRes);
         res.status(200).send(successfulRes);
         // res.status(200).json({ accessToken });
 

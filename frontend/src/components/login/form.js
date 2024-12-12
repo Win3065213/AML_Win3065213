@@ -57,12 +57,13 @@ export default function Form ({
 
     return (
         <div className="h-full flex flex-col justify-center">
-            {errors && (
-                <div className="bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 my-2">
-                Username or password is incorrect.
-                </div>
-            )}
             <form onSubmit={onSubmit} className="auth flex flex-col items-center">
+                {errors && (
+                    <div className="w-[300px] bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 mb-3">
+                    Username or password is incorrect.
+                    </div>
+                )}
+
             {/* <form onSubmit = {onSubmit}> */}
                 <input
                     type="text"

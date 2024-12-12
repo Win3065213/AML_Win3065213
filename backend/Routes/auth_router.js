@@ -6,7 +6,7 @@ const { verifyToken } = require('../middlewares/auth')
 // // to apply globally:
 // router.use(verifyToken);
 
-router.get("/posts", authController.getPosts);
+// router.get("/posts", authController.getPosts);
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.get("/access", verifyToken(), authController.getAccess);

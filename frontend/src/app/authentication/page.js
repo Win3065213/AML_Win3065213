@@ -3,23 +3,38 @@ import { useState, useRef } from "react";
 import Cover from "@/components/login/cover";
 import axios from "axios";
 import Login from "@/components/login/form";
+import { useSearchParams } from "next/navigation";
 
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [pwd, setPassword] = useState('');
-  const rePWD = useRef('');
+  const [rePWD, setRePWD] = useState('');
+
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const registerURL = "http://localhost:8000/authentication/register";
-  const registerUser = () => {
-    // e.preventDefault();
+  const registerUser = (e) => {
+    e.preventDefault();
     // console.log("register");
-    // if (!email || !pwd || !rePWD.current) {
-    //   console.log("empty")
-    // } else {
-    //   console.log("success");
-    // }
 
+    // field check
+    if (!email || !pwd || !rePWD) {
+      return setError("All fields required.")
+    }
+
+    if (pwd != rePWD) {
+      return setError("Passwords do not match.")
+    }
+
+    // regex check
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!emailRegex.test(email)) {
+      return setError("Invalid email format");
+    }
+
+    // register
     axios
       .post(registerURL, {
         email: email,
@@ -27,12 +42,18 @@ export default function Home() {
       })
       .then(() => {
         // setUserList([...userList, {email: email, password: pwd}])
-        alert("Register Successfully");
+        setError("");
+        setSuccess("Register Successfully");
+      }).catch(err => {
+        setSuccess("");
+        if(err?.response?.data?.error) {
+          setError(err.response.data.error)
+        } else if(err?.response?.data) {
+          setError(err.response.data)
+        } else {
+          setError(err.message)
+        }
       });
-      // .catch((err) => {
-      //   console.error("Error: ", err);
-      //   result(err, null);
-      // });
   };
 
   //to prevent initial animation
@@ -43,21 +64,30 @@ export default function Home() {
   }
 
   return (
-    <div className="p-5 w-dvw h-dvh grid grid-cols-1 md:grid-cols-2
+    <div className="p-5 w-dvw h-dvh grid grid-cols-1 lg:grid-cols-2
                   bg-black text-white">
       <div className="relative glass overflow-hidden
-                      rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl">
+                      rounded-t-2xl lg:rounded-tr-none lg:rounded-l-2xl">
         <Cover isRegister={false} clicked={registerClicked} onClick={() => handleCoverClick()} />
-
         {/* Register Form under Login Cover */}
         <form className="auth h-full flex flex-col justify-center items-center">
+          {error && (
+            <div className="w-[300px] bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 mb-2">
+            {error}
+            </div>
+          )}
+          {success && (
+            <div className="w-[300px] bg-green-500 bg-opacity-50 rounded-lg ring-green-500 ring-2 p-3 mb-2">
+            {success}
+            </div>
+          )}
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             //className="border w-full h-15 px-5 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-primary rounded-lg bg-white"
             value={email}
             onChange={(e) => {
-                setEmail(e.target.value)
+              setEmail(e.target.value)
             }} />
             
           <input
@@ -66,7 +96,7 @@ export default function Home() {
             // className="border w-full h-15 px-5 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-elanco rounded-lg bg-white"
             value={pwd}
             onChange={(e) => {
-                setPassword(e.target.value)
+              setPassword(e.target.value)
             }} />
             
           <input
@@ -74,7 +104,7 @@ export default function Home() {
             placeholder="Retype Password"
             // className="border w-full h-15 px-5 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-elanco rounded-lg bg-white"
             onChange={(e) => {
-              rePWD.current = e.target.value;
+              setRePWD(e.target.value);
             }} />
             
             <div>
@@ -84,7 +114,7 @@ export default function Home() {
       </div>
 
       <div className="relative glass overflow-hidden
-                      rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl">
+                      rounded-b-2xl lg:rounded-bl-none lg:rounded-r-2xl">
         <Cover isRegister={true} clicked={!registerClicked} onClick={() => handleCoverClick()} />
 
         {/* Login Form under Register Cover */}

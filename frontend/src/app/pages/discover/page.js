@@ -36,6 +36,7 @@ export default function Home() {
 
   useEffect(() => {
     if (searchParams) {
+      // console.log(searchParams)
       const fetchData = async () => {
         try {
           const response = await axios.post(searchURL, searchParams);
@@ -59,7 +60,7 @@ export default function Home() {
       <SearchBar onSearch={handleSearch} />
       <div className="mt-8">
         {mediaList.length === 0 ? (
-          <p>No results found.</p>
+          <p>No media found.</p>
           ) : (
           <div className="space-y-4">
               <Card mediaList={mediaList}/>
