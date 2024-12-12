@@ -1,0 +1,87 @@
+# Require VS Code Extension: REST Client
+
+### Get mock list
+GET http://localhost:8000/authentication/posts
+
+####################################################################
+### Register
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User 1",
+    "password": "asd123"
+}
+
+### Register 2
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "Administrator",
+    "password": "admin123"
+}
+
+####################################################################
+### Login Success (Manual)
+POST http://localhost:8000/authentication/login
+Content-Type: application/json
+
+{
+    "email": "Test User",
+    "password": "asd123"
+}
+
+####################################################################
+
+### Token
+POST http://localhost:8000/authentication/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlVzZXIgMSIsImlhdCI6MTczMjM4NTM0MywiZXhwIjoxNzMyMzg3MTQzfQ.dAPfEfYXidPkSOUUk9AZCx_aQ878Yan_ppW_UccieJE"
+}
+
+################################################################
+###################### Fail Tests ##############################
+################################################################
+
+### Register Fail (All field required)
+### Password
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User",
+    "password": ""
+}
+
+### Email
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "",
+    "password": "asd"
+}
+
+
+### JSON Errors
+### Syntax Error
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User",
+    "password": ""
+}ssw
+
+### Wrong Data Type
+POST http://localhost:8000/authentication/register
+Content-Type: application/json
+
+{
+    "email": "User",
+    "password": 1
+}
+################################################################

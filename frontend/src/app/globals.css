@@ -5,29 +5,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #8194eb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #8194eb;
   }
 }
 
 body {
+  box-sizing: border-box;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.form input {
+.auth input {
   width: 300px;
   height: 60px;
   margin: 10px;
@@ -35,6 +31,52 @@ body {
   font-size: 25px;
 }
 
-td {
-  @apply px-5 py-1
+@layer utilities {
+  td {
+    @apply px-5 py-1
+  }
+  
+  .cover-fade-in {
+    animation: fade-in 1s forwards;
+  }
+
+  .cover-fade-out {
+    animation: fade-out 1s forwards;
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      display: none;
+    }
+    1% {
+      opacity: 0;
+      display: block;
+    }
+    100% {
+      opacity: 1;
+      display: block;
+    }
+  }
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+      display: block;
+    }
+    99% {
+      opacity: 0;
+      display: block;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 24px 1px rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
 }

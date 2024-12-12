@@ -24,6 +24,7 @@ const pool = require("../database");
 
 exports.getAllUsers = async () => {
     const sqlRead = "SELECT * FROM users";
+    // test with execute
     const [rows] = await pool.query(sqlRead)
     return rows
 }
@@ -40,6 +41,7 @@ exports.getAllUsers = async () => {
 
 exports.createUser = async (email, password) => {
     const sqlCreate = "INSERT INTO users (email, password) VALUES (?,?)";
+    // test with execute
     const [result] = await pool.query(sqlCreate, [email, password])
     return result
 }
