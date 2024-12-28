@@ -35,7 +35,7 @@ export const authOptions = {
               role: res.data.user.role,
               jwt: res.data.token,
             };
-            console.log("Logged in user: ", user);
+            // console.log("Logged in user: ", user);
             // console.log("Logged in user: ", res);
             return user;
           }
@@ -48,6 +48,32 @@ export const authOptions = {
     }),
   ],
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Prevent callbackUrl recursion
+      const safeBaseUrl = new URL(baseUrl).origin; // e.g., http://localhost:3000
+
+      // Parse the URL to check for recursive issues
+      const parsedUrl = new URL(url, baseUrl);
+
+      // Avoid appending if callbackUrl already exists
+      const callbackUrl = parsedUrl.searchParams.get('callbackUrl');
+      if (callbackUrl && callbackUrl.includes(baseUrl)) {
+        return baseUrl; // Redirect to base URL if recursion is detected
+      }
+      
+      // Allow internal URLs (from your app) to proceed
+      if (url.startsWith(safeBaseUrl)) {
+        return url;
+      }
+  
+      // Allow relative paths like "/dashboard"
+      if (url.startsWith("/")) {
+        return `${safeBaseUrl}${url}`;
+      }
+  
+      // Default to base URL if callbackUrl is external or invalid
+      return safeBaseUrl;
+    },
     async jwt({ token, user }) {
       // console.log("JWT Callback: ", token, user);
       // console.log("jwt success once: ",user);

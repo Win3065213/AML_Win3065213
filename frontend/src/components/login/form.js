@@ -20,6 +20,12 @@ export default function Form ({
             return setError('All fields required.');
         }
 
+        // regex check
+        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!emailRegex.test(email)) {
+        return setError("Invalid email format.");
+        }
+
         try {
             await signIn("credentials", {
                 email: email,
@@ -61,7 +67,7 @@ export default function Form ({
                 {/* for login failed */}
                 {errors && !error && (
                     <div className="w-[300px] bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 mb-2">
-                    Username or password is incorrect.
+                        Username or password is incorrect.
                     </div>
                 )}
                 {/* for other types */}
