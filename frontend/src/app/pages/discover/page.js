@@ -7,6 +7,7 @@ import axios from 'axios'
 
 export default function Home() {
   const [mediaList, setMediaList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useState(null);
 
   // const mockMediaData = [
@@ -21,7 +22,8 @@ export default function Home() {
   //   { id: 9, title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling", type: "ebook", year: 1997, isbn: "9780747532699", publisher: "Bloomsbury" },
   //   { id: 10, title: "The Hobbit", author: "J.R.R. Tolkien", type: "book", year: 1937, isbn: "9780547928227", publisher: "George Allen & Unwin" },
   // ];
-
+  
+  const startURL = "http://localhost:8000/media/all"
   const searchURL = "http://localhost:8000/media/search"
   const handleSearch = (params) => {
     // console.log("Input search data: ", searchParams);
@@ -35,21 +37,27 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (searchParams) {
-      // console.log(searchParams)
-      const fetchData = async () => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      if (searchParams) {
+        // console.log(searchParams)
         try {
           const response = await axios.post(searchURL, searchParams);
-          const data = response.data
-          setMediaList(data);
+          setMediaList(response.data);
+        } catch (error) {
+          console.error("Error fetching media data", error);
+        }
+      } else {
+        try {
+          const response = await axios.get(startURL);
+          setMediaList(response.data);
         } catch (error) {
           console.error("Error fetching media data", error);
         }
       }
-      fetchData();
-    } else {
-      // put fetch all later
     }
+    fetchData();
+    setIsLoading(false);
   }, [searchParams]);
   
   // console.log("send data: ", mediaList)
@@ -58,16 +66,16 @@ export default function Home() {
     <main className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Media Search</h1>
       <SearchBar onSearch={handleSearch} />
-      <div className="mt-8">
-        {mediaList.length === 0 ? (
-          <p>No media found.</p>
-          ) : (
-          <div className="space-y-4">
-              <Card mediaList={mediaList}/>
-          </div>
-        )}
-      </div>
       
+      {isLoading ? (
+        <div className="flex items-center justify-center h-64 text-2xl font-bold">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <div>
+            <Card mediaList={mediaList}/>
+        </div>
+      )}
     </main>
   )
 }
