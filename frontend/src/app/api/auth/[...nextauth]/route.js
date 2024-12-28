@@ -16,7 +16,7 @@ export const authOptions = {
           return null;
         }
         try {
-          const res = await axios.post("http://localhost:8000/authentication/login",
+          const res = await axios.post("http://localhost:8000/auth/login",
             {
               email: credentials.email,
               password: credentials.password,

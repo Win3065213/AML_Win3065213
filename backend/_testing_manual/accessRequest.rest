@@ -1,5 +1,5 @@
 ### Login Success (Member)
-POST http://localhost:8000/authentication/login
+POST http://localhost:8000/auth/login
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ### Login Success (admin)
-POST http://localhost:8000/authentication/login
+POST http://localhost:8000/auth/login
 Content-Type: application/json
 
 {
@@ -18,15 +18,15 @@ Content-Type: application/json
 
 ###############
 #default access
-GET http://localhost:8000/authentication/access
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJBZG1pbmlzdHJhdG9yIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyODk5MDU1LCJleHAiOjE3MzI5MDA4NTV9.tH-gK1O62_D-i-BNKzccO3mdiySx763ggsiGyfnq82c
+GET http://localhost:8000/auth/access
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJBZG1pbmlzdHJhdG9yIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1MTY1ODA2LCJleHAiOjE3MzUxNjc2MDZ9.r6_NvkmavKD_Qdof3_8y5fWT_2V-5di0BNInhDRT6po
 
 #####
 #admin access
 GET http://localhost:8000/admin/access
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJBZG1pbmlzdHJhdG9yIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyODk5MDU1LCJleHAiOjE3MzI5MDA4NTV9.tH-gK1O62_D-i-BNKzccO3mdiySx763ggsiGyfnq82c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJBZG1pbmlzdHJhdG9yIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1MTY1ODA2LCJleHAiOjE3MzUxNjc2MDZ9.r6_NvkmavKD_Qdof3_8y5fWT_2V-5di0BNInhDRT6po
 
 ########################
 #member access
 GET http://localhost:8000/member/access
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJBZG1pbmlzdHJhdG9yIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyODk5MDU1LCJleHAiOjE3MzI5MDA4NTV9.tH-gK1O62_D-i-BNKzccO3mdiySx763ggsiGyfnq82c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJBZG1pbmlzdHJhdG9yIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1MTY1ODA2LCJleHAiOjE3MzUxNjc2MDZ9.r6_NvkmavKD_Qdof3_8y5fWT_2V-5di0BNInhDRT6po

@@ -58,9 +58,12 @@ exports.register = async (req, res, next) => {
         }
 
         const register = await authModel.registerUser(email, password);
+        // console.log("return register function:",register);
         if(register) {
             res.status(201).send("Successfully Registered");
             // console.log(register);
+        } else {
+            throw error;
         };
     } catch (error) {
         next(error)
@@ -101,8 +104,8 @@ exports.login = async (req, res, next) => {
             token: accessToken,
         };
         // console.log(user);
-        // console.log(successfulRes);
-        res.status(200).send(successfulRes);
+        console.log(successfulRes);
+        res.status(200).json(successfulRes);
         // res.status(200).json({ accessToken });
 
     } catch (error) {

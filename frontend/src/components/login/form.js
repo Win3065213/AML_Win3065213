@@ -14,10 +14,10 @@ export default function Form ({
     const router = useRouter();
 
     const onSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (!email|| !password) {
-            return;
+            return setError('All fields required.');
         }
 
         try {
@@ -35,7 +35,7 @@ export default function Form ({
     const errors = searchParams ? searchParams.get("error") || "" : "";
 
     // // testing and referencing
-    // const loginURL = "http://localhost:8000/authentication/login";
+    // const loginURL = "http://localhost:8000/auth/login";
     // const loginUser = (e) =>{
     //     e.preventDefault();
     //     console.log("login");
@@ -58,9 +58,16 @@ export default function Form ({
     return (
         <div className="h-full flex flex-col justify-center">
             <form onSubmit={onSubmit} className="auth flex flex-col items-center">
-                {errors && (
-                    <div className="w-[300px] bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 mb-3">
+                {/* for login failed */}
+                {errors && !error && (
+                    <div className="w-[300px] bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 mb-2">
                     Username or password is incorrect.
+                    </div>
+                )}
+                {/* for other types */}
+                {error && (
+                    <div className="w-[300px] bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 mb-2">
+                    {error}
                     </div>
                 )}
 

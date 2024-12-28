@@ -14,7 +14,7 @@ export default function Home() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const registerURL = "http://localhost:8000/authentication/register";
+  const registerURL = "http://localhost:8000/authregister";
   const registerUser = (e) => {
     e.preventDefault();
     // console.log("register");

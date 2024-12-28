@@ -39,7 +39,7 @@ app.use(jsonParseErrorHandler);
 // });
 
 app.use('/api_n_tier', userRoutes)
-app.use('/authentication', authRoutes)
+app.use('/auth', authRoutes)
 app.use('/admin', adminRoutes)
 app.use('/member', memberRoutes)
 app.use('/media', mediaRoutes)
