@@ -1,11 +1,11 @@
 # Require VS Code Extension: REST Client
 
-### Get mock list
-GET http://localhost:8000/authentication/posts
+### Get mock list (commented/removed)
+GET http://localhost:8000/auth/posts
 
 ####################################################################
 ### Register
-POST http://localhost:8000/authentication/register
+POST http://localhost:8000/auth/register
 Content-Type: application/json
 
 {
@@ -14,17 +14,17 @@ Content-Type: application/json
 }
 
 ### Register 2
-POST http://localhost:8000/authentication/register
+POST http://localhost:8000/auth/register
 Content-Type: application/json
 
 {
-    "email": "Administrator",
-    "password": "admin123"
+    "email": "user@example.com",
+    "password": "Password123"
 }
 
 ####################################################################
 ### Login Success (Manual)
-POST http://localhost:8000/authentication/login
+POST http://localhost:8000/auth/login
 Content-Type: application/json
 
 {
@@ -35,7 +35,7 @@ Content-Type: application/json
 ####################################################################
 
 ### Token
-POST http://localhost:8000/authentication/token
+POST http://localhost:8000/auth/token
 Content-Type: application/json
 
 {
@@ -48,7 +48,7 @@ Content-Type: application/json
 
 ### Register Fail (All field required)
 ### Password
-POST http://localhost:8000/authentication/register
+POST http://localhost:8000/auth/register
 Content-Type: application/json
 
 {
@@ -57,7 +57,7 @@ Content-Type: application/json
 }
 
 ### Email
-POST http://localhost:8000/authentication/register
+POST http://localhost:8000/auth/register
 Content-Type: application/json
 
 {
@@ -68,7 +68,7 @@ Content-Type: application/json
 
 ### JSON Errors
 ### Syntax Error
-POST http://localhost:8000/authentication/register
+POST http://localhost:8000/auth/register
 Content-Type: application/json
 
 {
@@ -77,7 +77,7 @@ Content-Type: application/json
 }ssw
 
 ### Wrong Data Type
-POST http://localhost:8000/authentication/register
+POST http://localhost:8000/auth/register
 Content-Type: application/json
 
 {

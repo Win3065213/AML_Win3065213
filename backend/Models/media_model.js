@@ -7,7 +7,26 @@ const pool = require("../database");
 //     return typeIDs;
 // }
 
-exports.getMedia = async (value, isAdvanced, searchBy,mediaTypes) => {
+exports.getMediaList = async () => {
+    try{
+        const mediaSQL = `SELECT 
+            m.mediaID,
+            m.mediaName,
+            m.creator,
+            m.publisher,
+            m.year,
+            types.mediaType
+            FROM media m JOIN types ON m.typeID = types.typeID`;
+        const [mediaList] = await pool.execute(mediaSQL);
+        return mediaList;
+    }
+    catch (error) {
+        console.error("Error in getting media list.");
+        throw error;
+    }
+}
+
+exports.getMedia = async (value, isAdvanced, searchBy, mediaTypes) => {
     // media database query based on receiving values
     let query = `SELECT 
         m.mediaID,
@@ -15,8 +34,8 @@ exports.getMedia = async (value, isAdvanced, searchBy,mediaTypes) => {
         m.creator,
         m.publisher,
         m.year,
-        type.mediaType
-        FROM media m JOIN type ON m.typeID = type.typeID WHERE `;
+        types.mediaType
+        FROM media m JOIN types ON m.typeID = types.typeID WHERE `;
     const params = [];
 
     if (!isAdvanced) {
@@ -46,7 +65,7 @@ exports.getMedia = async (value, isAdvanced, searchBy,mediaTypes) => {
                 .map(([key]) => key)
             if (selectedTypes.length > 0) {
                 const placeholders = selectedTypes.map(() => '?').join(', ');
-                query += ` AND type.mediaType IN (${placeholders})`
+                query += ` AND types.mediaType IN (${placeholders})`
                 params.push(...selectedTypes);
             }
         }

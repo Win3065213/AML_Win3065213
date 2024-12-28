@@ -1,5 +1,8 @@
+### Media List
+GET http://localhost:8000/media/all
+
 ### Media Search (Simple)
-POST  http://localhost:8000/media/search
+POST http://localhost:8000/media/search
 Content-Type: application/json
 
 {
@@ -15,7 +18,7 @@ Content-Type: application/json
 }
 
 ### Media Search (Advanced)
-POST  http://localhost:8000/media/search
+POST http://localhost:8000/media/search
 Content-Type: application/json
 
 {

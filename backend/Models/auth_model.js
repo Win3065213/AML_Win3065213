@@ -63,8 +63,8 @@ exports.registerUser = async (email, password) => {
         const sqlRegister = "INSERT INTO account (email, password, roleID) VALUES (?,?,?)";
         const memberRole = await this.findRole("member");
         // console.log(memberRole);
-        await pool.execute(sqlRegister, [email, hashedPassword, memberRole.roleID]);
-        return;
+        const [result] =await pool.execute(sqlRegister, [email, hashedPassword, memberRole.roleID]);
+        return result.affectedRows > 0;
     }
     catch (error) {
         throw error
