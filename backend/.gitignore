@@ -13,6 +13,7 @@
 
 # testing
 /coverage
+/_testing_manual
 
 # production
 /build
