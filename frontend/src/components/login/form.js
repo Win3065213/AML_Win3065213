@@ -67,7 +67,7 @@ export default function Form ({
                 {/* for login failed */}
                 {errors && !error && (
                     <div className="w-[300px] bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 mb-2">
-                        Username or password is incorrect.
+                        {errors}
                     </div>
                 )}
                 {/* for other types */}

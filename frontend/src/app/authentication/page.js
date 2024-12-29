@@ -43,7 +43,7 @@ export default function Home() {
       .then(() => {
         // setUserList([...userList, {email: email, password: pwd}])
         setError("");
-        setSuccess("Register Successfully");
+        setSuccess("Registered Successfully.");
       }).catch(err => {
         setSuccess("");
         if(err?.response?.data?.error) {

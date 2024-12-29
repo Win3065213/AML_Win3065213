@@ -40,8 +40,13 @@ export const authOptions = {
             return user;
           }
         } catch (error) {
-          // put status unauthorised here
-          console.log('Authentication error:', error)
+          // console.log('Authentication error:', error)
+          if (error.response && error.status != 500) {
+            // console.error("error response",error.response.data);
+            throw new Error(error.response.data)
+          } else {
+            throw new Error("Connection error.");
+          }
         }
         return null;
       },
@@ -103,6 +108,7 @@ export const authOptions = {
   },
   pages: {
     signIn: '/authentication',
+    error: '/authentication',
   },
 };
 

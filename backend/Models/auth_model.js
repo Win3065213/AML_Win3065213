@@ -67,11 +67,18 @@ exports.registerUser = async (email, password) => {
         return result.affectedRows > 0;
     }
     catch (error) {
+        console.error("Error in user registration.");
         throw error
     }
 }
 
 exports.checkPassword = async (user, password) => {
-    const result = await bcrypt.compare(password, user.password);
-    return result;
+    try {
+        const result = await bcrypt.compare(password, user.password);
+        return result;
+    }
+    catch (error) {
+        console.error("Error in checking password.");
+        throw error
+    }
 }
