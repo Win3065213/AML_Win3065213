@@ -38,7 +38,7 @@ exports.findUser = async (email) => {
 
 exports.findRole = async (role, isID = false) => {
     try{
-        const sqlFind = isID ? "SELECT * FROM role WHERE roleID = ?" : "SELECT * FROM role WHERE roleName = ?";
+        const sqlFind = isID ? "SELECT * FROM roles WHERE roleID = ?" : "SELECT * FROM role WHERE roleName = ?";
         const [roles] = await pool.execute(sqlFind, [role]);
 
         if (roles.length === 1) {
