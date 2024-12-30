@@ -81,13 +81,13 @@ exports.login = async (req, res, next) => {
         // find user
         const user = await authModel.findUser(email);
         if (!user) {
-            return res.status(400).send('Cannot find user');
+            return res.status(400).send('User not found.');
         }
 
         // validate or check password
         const validation = await authModel.checkPassword(user, password);
         if (!validation) {
-            return res.status(401).send('Email and password mismatch');
+            return res.status(401).send('Email and password mismatch.');
         }
 
         // validation success

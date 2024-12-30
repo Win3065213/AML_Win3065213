@@ -38,7 +38,7 @@ exports.findUser = async (email) => {
 
 exports.findRole = async (role, isID = false) => {
     try{
-        const sqlFind = isID ? "SELECT * FROM role WHERE roleID = ?" : "SELECT * FROM role WHERE roleName = ?";
+        const sqlFind = isID ? "SELECT * FROM roles WHERE roleID = ?" : "SELECT * FROM role WHERE roleName = ?";
         const [roles] = await pool.execute(sqlFind, [role]);
 
         if (roles.length === 1) {
@@ -67,11 +67,18 @@ exports.registerUser = async (email, password) => {
         return result.affectedRows > 0;
     }
     catch (error) {
+        console.error("Error in user registration.");
         throw error
     }
 }
 
 exports.checkPassword = async (user, password) => {
-    const result = await bcrypt.compare(password, user.password);
-    return result;
+    try {
+        const result = await bcrypt.compare(password, user.password);
+        return result;
+    }
+    catch (error) {
+        console.error("Error in checking password.");
+        throw error
+    }
 }
