@@ -14,15 +14,35 @@ const db = require("./database");
 //     database: 'CRUDDB'
 // });
 
-const userRoutes = require('./Routes/user_route');
+const { jsonParseErrorHandler, generalErrorHandler } = require('./middlewares/errorHandlers');
 
+const userRoutes = require('./Routes/user_route');
+const authRoutes = require('./Routes/auth_router');
+const adminRoutes = require('./Routes/admin_router');
+const memberRoutes = require('./Routes/member_router');
+const mediaRoutes = require('./Routes/media_router');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(jsonParseErrorHandler);
+
+// app.use((err, req, res, next) => {
+//     if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+//         return res.status(400).json({
+//             error: 'Invalid JSON provided',
+//             message: err.message,
+//         });
+//     }
+//     next(err); // Pass other errors to the default handler
+// });
 
 app.use('/api_n_tier', userRoutes)
+app.use('/auth', authRoutes)
+app.use('/admin', adminRoutes)
+app.use('/member', memberRoutes)
+app.use('/media', mediaRoutes)
 
 
 app.get('/api/read', async (req, res) => {
@@ -62,6 +82,8 @@ app.get('/', (req,res) => {
     //     res.send("Default Inserted.")
     // })
 });
+
+app.use(generalErrorHandler);
 
 app.listen(port, () => {
     console.log(`running on port ${port}`)

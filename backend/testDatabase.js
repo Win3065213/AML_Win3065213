@@ -1,4 +1,3 @@
-// testDatabase.js
 const db = require('./database');
 
 console.log('DB:', db); // Should log the promise-based pool, not undefined

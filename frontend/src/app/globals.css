@@ -3,31 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #ededed;
   --foreground: #171717;
+  --loader: #ededed00;
+  --primary: #8194eb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --loader: #ededed00;
+    --primary: #8194eb;
   }
 }
 
 body {
+  box-sizing: border-box;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.form input {
+.auth input {
   width: 300px;
   height: 60px;
   margin: 10px;
@@ -35,6 +33,79 @@ body {
   font-size: 25px;
 }
 
-td {
-  @apply px-5 py-1
+@layer utilities {
+  td {
+    @apply px-5 py-1
+  }
+  
+  .cover-fade-in {
+    animation: fade-in 1s forwards;
+  }
+
+  .cover-fade-out {
+    animation: fade-out 1s forwards;
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      display: none;
+    }
+    1% {
+      opacity: 0;
+      display: block;
+    }
+    100% {
+      opacity: 1;
+      display: block;
+    }
+  }
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+      display: block;
+    }
+    99% {
+      opacity: 0;
+      display: block;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 24px 1px rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  /* Loading animation */
+  .loader {
+    width: fit-content;
+    font-size: 40px;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--loader);
+    -webkit-text-stroke: 1px var(--foreground);
+    --g:conic-gradient(var(--foreground) 0 0) no-repeat text;
+    background:var(--g) 0,var(--g) 1ch,var(--g) 2ch,var(--g) 3ch,var(--g) 4ch,var(--g) 5ch,var(--g) 6ch;
+    animation: 
+      l17-0 1s linear infinite alternate,
+      l17-1 2s linear infinite;
+  }
+  .loader:before {
+    content: "Loading";
+  }
+  @keyframes l17-0 {
+    0%   {background-size: 1ch 0   }
+    100% {background-size: 1ch 100%}
+  }
+  @keyframes l17-1 {
+    0%,50%    {background-position-y: 100%, 0}
+    50.01%,to {background-position-y: 0, 100%}
+  }
 }
