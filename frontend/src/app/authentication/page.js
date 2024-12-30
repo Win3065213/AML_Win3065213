@@ -14,7 +14,7 @@ export default function Home() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const registerURL = "http://localhost:8000/authregister";
+  const registerURL = "http://localhost:8000/auth/register";
   const registerUser = (e) => {
     e.preventDefault();
     // console.log("register");
@@ -48,9 +48,12 @@ export default function Home() {
         setSuccess("");
         if(err?.response?.data?.error) {
           setError(err.response.data.error)
+          console.log("error")
         } else if(err?.response?.data) {
+          console.log("data")
           setError(err.response.data)
         } else {
+          console.log("else")
           setError(err.message)
         }
       });
