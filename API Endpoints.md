@@ -58,7 +58,7 @@ Successfully Registered
 
 ```json
 {
-    "email": "Administrator",
+    "email": "Administrator@aml.ac.uk",
     "password": "admin123"
 }
 ```
@@ -72,8 +72,8 @@ Successfully Registered
 {
   "user": {
     "id": 5,
-    "email": "Administrator",
-    "role": "admin"
+    "email": "Administrator@aml.ac.uk",
+    "role": "sys_admin"
   },
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJBZG1pbmlzdHJhdG9yIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1MTY1ODA2LCJleHAiOjE3MzUxNjc2MDZ9.r6_NvkmavKD_Qdof3_8y5fWT_2V-5di0BNInhDRT6po"
 }
@@ -182,7 +182,7 @@ Successfully Registered
 
 <details>
 
-<summary>Auth/Admin/Memeber access (For mocking access)</summary>
+<summary>Auth/System Admin/Memeber access (For mocking access)</summary>
 
 **_List of APIs_**:
 
@@ -192,8 +192,8 @@ Successfully Registered
 </pre>
 
 <pre>
-  <b>Endpoint</b>: GET /admin/access
-  <b>Description</b>: Admin role-restricted access to the system.
+  <b>Endpoint</b>: GET /sys_admin/access
+  <b>Description</b>: System Admin role-restricted access to the system.
 </pre>
 
 <pre>
