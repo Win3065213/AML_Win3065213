@@ -1,6 +1,6 @@
 'use client'
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 // put the async here
 export default function Form ({
@@ -11,7 +11,6 @@ export default function Form ({
 }) {
     // these seems extras
     const [error, setError] = useState('');
-    const router = useRouter();
 
     const onSubmit = async (e) => {
         e.preventDefault();
