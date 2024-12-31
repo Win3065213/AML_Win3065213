@@ -80,7 +80,7 @@ exports.login = async (req, res, next) => {
             token: accessToken,
         };
         // console.log(user);
-        console.log(successfulRes);
+        // console.log(successfulRes);
         res.status(200).json(successfulRes);
         // res.status(200).json({ accessToken });
 

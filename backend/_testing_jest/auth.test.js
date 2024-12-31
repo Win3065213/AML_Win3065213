@@ -48,7 +48,7 @@ describe('Auth Middleware', () => {
 
   it('should call next() if token is valid', () => {
     mockRequest.headers['authorization'] = 'Bearer valid_token';
-    const mockUser = { id: 1, username: 'testuser' };
+    const mockUser = { id: 1, email: 'testuser', role: 'user' };
     jwt.verify.mockImplementation((token, secret, callback) => {
       callback(null, mockUser);
     });
@@ -62,7 +62,7 @@ describe('Auth Middleware', () => {
 
   it('should return 403 if required role is not met', () => {
     mockRequest.headers['authorization'] = 'Bearer valid_token';
-    const mockUser = { id: 1, username: 'testuser', role: 'user' };
+    const mockUser = { id: 1, email: 'testuser', role: 'user' };
     jwt.verify.mockImplementation((token, secret, callback) => {
       callback(null, mockUser);
     });
@@ -77,7 +77,7 @@ describe('Auth Middleware', () => {
 
   it('should call next() if required role is met', () => {
     mockRequest.headers['authorization'] = 'Bearer valid_token';
-    const mockUser = { id: 1, username: 'testuser', role: 'sys_admin' };
+    const mockUser = { id: 3, username: 'testuser', role: 'sys_admin' };
     jwt.verify.mockImplementation((token, secret, callback) => {
       callback(null, mockUser);
     });
