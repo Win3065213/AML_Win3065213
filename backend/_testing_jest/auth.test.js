@@ -67,7 +67,7 @@ describe('Auth Middleware', () => {
       callback(null, mockUser);
     });
 
-    const middleware = verifyToken('admin');
+    const middleware = verifyToken('sys_admin');
     middleware(mockRequest, mockResponse, mockNext);
 
     expect(mockResponse.status).toHaveBeenCalledWith(403);
@@ -77,12 +77,12 @@ describe('Auth Middleware', () => {
 
   it('should call next() if required role is met', () => {
     mockRequest.headers['authorization'] = 'Bearer valid_token';
-    const mockUser = { id: 1, username: 'testuser', role: 'admin' };
+    const mockUser = { id: 1, username: 'testuser', role: 'sys_admin' };
     jwt.verify.mockImplementation((token, secret, callback) => {
       callback(null, mockUser);
     });
 
-    const middleware = verifyToken('admin');
+    const middleware = verifyToken('sys_admin');
     middleware(mockRequest, mockResponse, mockNext);
 
     expect(mockRequest.user).toEqual(mockUser);

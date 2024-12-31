@@ -69,7 +69,7 @@ describe('Auth Model', () => {
     it('should throw error when database query fails', async () => {
       pool.execute.mockRejectedValue(new Error('Database error'));
 
-      await expect(authModel.findRole('admin')).rejects.toThrow('Database error');
+      await expect(authModel.findRole('sys_admin')).rejects.toThrow('Database error');
     });
   });
 

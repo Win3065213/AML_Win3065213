@@ -1,6 +1,6 @@
 const pool = require("../database");
 
-exports.findAdmin = async (email) => {
+exports.findSysAdmin = async (email) => {
     const sqlFind = "SELECT * FROM account WHERE email = ?";
     const [users] = await pool.execute(sqlFind, [email]);
 

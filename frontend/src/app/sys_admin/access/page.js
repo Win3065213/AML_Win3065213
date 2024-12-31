@@ -1,12 +1,11 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import Navbar from "@/components/navbar";
 import axios from "axios";
 import { getServerSession } from "next-auth";
 
-export default async function AdminAccess() {
+export default async function SysAdminAccess() {
   const session = await getServerSession(authOptions);
   
-  const response = await axios.get("http://localhost:8000/admin/access", {
+  const response = await axios.get("http://localhost:8000/sys_admin/access", {
   headers: {
       Authorization: session ? `Bearer ${session.jwt}`:  `Bearer `,
       "Content-Type": "application/json",
@@ -25,14 +24,17 @@ export default async function AdminAccess() {
 
   return (
     <div>
-      <Navbar />
       {response?.error && (
         <div className="bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 my-2">
           {response?.error}
         </div>
       )}
-
-      Admin Page. The page requires admin role to access it.
+      <div className="text-3xl">System Admin Data (except hashed password)</div>
+      <p>AccountID: {response.data.accountID}</p>
+      <p>Email: {response.data.email}</p>
+      <p>RoleID: {response.data.roleID}</p>
+      <br/>
+      System Admin Data Page. The page requires system admin role to access data.
     </div>
   );
 };

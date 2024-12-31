@@ -8,8 +8,8 @@ export default async function AuthLayout({ children }) {
   if (session?.role == "member") {
     redirect("/user")
   }
-  if (session?.role == "admin") {
-    redirect("/admin")
+  if (session?.role == "sys_admin") {
+    redirect("/sys_admin")
   }
 
   return (
