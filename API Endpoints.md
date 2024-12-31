@@ -182,16 +182,6 @@ Successfully Registered
 
 <details>
 
-<summary>Check Token </summary>
-
-**_Endpoint_**: POST /auth/token
-
-**_Description_**: To check token from frontend.
-
-</details>
-
-<details>
-
 <summary>Auth/Admin/Memeber access (For mocking access)</summary>
 
 **_List of APIs_**:
