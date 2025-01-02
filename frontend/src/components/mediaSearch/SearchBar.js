@@ -53,7 +53,7 @@ export default function SearchBar({ onSearch }) {
                     type="text"
                     value={searchValue}
                     onChange={(e) => setValue(e.target.value)}
-                    placeholder={isAdvanced && searchBy != "all" ? `Enter ${searchBy}` :"Enter title, author, publisher"}
+                    placeholder={isAdvanced && searchBy != "all" ? `Enter ${searchBy}` :"Enter title, creator, publisher"}
                     className="flex-grow text-black p-3 border-4 border-primary rounded"
                     />
                 <button className="w-28 bg-primary p-3 rounded font-bold" type="submit">Search</button>

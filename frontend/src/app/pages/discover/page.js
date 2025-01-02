@@ -9,7 +9,8 @@ export default function Home() {
   const [mediaList, setMediaList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useState(null);
-  
+  const [sortBy, setSortBy] = useState('Default');
+
   const startURL = "http://localhost:8000/media/all"
   const searchURL = "http://localhost:8000/media/search"
   const handleSearch = (params) => {
@@ -47,6 +48,17 @@ export default function Home() {
     setIsLoading(false);
   }, [searchParams]);
   
+  useEffect(() => {
+    if (mediaList.length > 0) {
+      const sortedResults = [...mediaList].sort((a, b) => {
+        if (a[sortBy] < b[sortBy]) return -1;
+        if (a[sortBy] > b[sortBy]) return 1;
+        return 0;
+      });
+      setMediaList(sortedResults);
+    }
+  }, [sortBy]);
+
   // console.log("send data: ", mediaList)
   
   return (
@@ -60,7 +72,17 @@ export default function Home() {
         </div>
       ) : (
         <div>
-            <Card mediaList={mediaList}/>
+          <div className='flex space-x-2 items-center mt-4'>
+            <label className="text-lg font-medium">Sort by:</label>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="w-[180px] p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-black">
+              <option value="mediaID">Default</option>
+              <option value="mediaName">Title</option>
+              <option value="creator">Creator</option>
+              <option value="publisher">Publisher</option>
+              <option value="year">Year</option>
+            </select>
+          </div>
+          <Card mediaList={mediaList}/>
         </div>
       )}
     </main>
