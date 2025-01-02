@@ -212,10 +212,11 @@ Successfully Registered
 
 ```json
 {
-  "accountID": 5,
-  "email": "Administrator",
-  "password": "$2a$10$eSHkTPbxVIxZB6ae8cq2BO4YMxkLStFRVIWNBpSZ3pSckhdO2AeXq",
-  "roleID": 2
+  "email": "Administrator@aml.ac.uk",
+  "roleName": "sys_admin",
+  "contractType": "Permanent",
+  "employmentType": "Full-time",
+  "hireDate": "2015-06-30T23:00:00.000Z"
 }
 ```
 
