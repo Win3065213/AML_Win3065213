@@ -1,8 +1,9 @@
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { redirect } from "next/navigation"
+import Navbar from "@/components/navbar"
 
-export default async function AdminLayout({ children }) {
+export default async function SysAdminLayout({ children }) {
     const session = await getServerSession(authOptions)
     // console.log("Session: ",session);
 
@@ -11,12 +12,15 @@ export default async function AdminLayout({ children }) {
         redirect("/authentication")
     }
 
-    if (session?.role != "admin") {
+    if (session?.role != "sys_admin") {
         // console.log("unauthorized");
         redirect("/authentication")
     }
 
     return (
-    <div> {children} </div>
+        <div>
+            <Navbar login={session != null} role={session?.role} />
+            {children}
+        </div>
     )
 }

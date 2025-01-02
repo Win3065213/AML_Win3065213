@@ -69,7 +69,7 @@ export default function Home() {
   return (
     <div className="p-5 w-dvw h-dvh grid grid-cols-1 lg:grid-cols-2
                   bg-black text-white">
-      <div className="relative glass overflow-hidden
+      <div className="relative glass glass-shadow overflow-hidden
                       rounded-t-2xl lg:rounded-tr-none lg:rounded-l-2xl">
         <Cover isRegister={false} clicked={registerClicked} onClick={() => handleCoverClick()} />
         {/* Register Form under Login Cover */}
@@ -116,7 +116,7 @@ export default function Home() {
         </form>
       </div>
 
-      <div className="relative glass overflow-hidden
+      <div className="relative glass glass-shadow overflow-hidden
                       rounded-b-2xl lg:rounded-bl-none lg:rounded-r-2xl">
         <Cover isRegister={true} clicked={!registerClicked} onClick={() => handleCoverClick()} />
 

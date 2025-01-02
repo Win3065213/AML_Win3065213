@@ -44,21 +44,21 @@ describe('Auth Model', () => {
 
       const result = await authModel.findRole(1, true);
 
-      expect(pool.execute).toHaveBeenCalledWith("SELECT * FROM role WHERE roleID = ?", [1]);
+      expect(pool.execute).toHaveBeenCalledWith("SELECT * FROM roles WHERE roleID = ?", [1]);
       expect(result).toEqual(mockRole);
     });
 
-    it('should find role by name', async () => {
+    test('should find role by name', async () => {
       const mockRole = { roleID: 1, roleName: 'member' };
       pool.execute.mockResolvedValue([[mockRole]]);
 
       const result = await authModel.findRole('member');
 
-      expect(pool.execute).toHaveBeenCalledWith("SELECT * FROM role WHERE roleName = ?", ['member']);
+      expect(pool.execute).toHaveBeenCalledWith("SELECT * FROM roles WHERE roleName = ?", ['member']);
       expect(result).toEqual(mockRole);
     });
 
-    it('should return null when role not found', async () => {
+    test('should return null when role not found', async () => {
       pool.execute.mockResolvedValue([[]]);
 
       const result = await authModel.findRole('other');
@@ -69,7 +69,7 @@ describe('Auth Model', () => {
     it('should throw error when database query fails', async () => {
       pool.execute.mockRejectedValue(new Error('Database error'));
 
-      await expect(authModel.findRole('admin')).rejects.toThrow('Database error');
+      await expect(authModel.findRole('sys_admin')).rejects.toThrow('Database error');
     });
   });
 
@@ -85,7 +85,7 @@ describe('Auth Model', () => {
       const result = await authModel.registerUser('newuser@test.com', 'password123');
 
       expect(bcrypt.hash).toHaveBeenCalledWith('password123', 10);
-      expect(pool.execute).toHaveBeenCalledWith("SELECT * FROM role WHERE roleName = ?", ['member']);
+      expect(pool.execute).toHaveBeenCalledWith("SELECT * FROM roles WHERE roleName = ?", ['member']);
       expect(pool.execute).toHaveBeenCalledWith(
         "INSERT INTO account (email, password, roleID) VALUES (?,?,?)",
         ['newuser@test.com', 'hashedPassword', 1]
