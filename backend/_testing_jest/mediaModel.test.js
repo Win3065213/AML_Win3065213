@@ -21,7 +21,7 @@ describe('Media Model test', () => {
             await mediaModel.getMedia('test', false, null, null); // latter two parameters should not affect query
 
             expect(pool.execute).toHaveBeenCalledWith(
-            expect.stringContaining('WHERE (mediaName LIKE ? OR creator LIKE ? OR publisher LIKE ?)'),
+            expect.stringContaining('WHERE (m.mediaName LIKE ? OR m.creator LIKE ? OR m.publisher LIKE ?)'),
             ['%test%', '%test%', '%test%']
             );
         });

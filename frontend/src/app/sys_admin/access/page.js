@@ -34,9 +34,11 @@ export default async function SysAdminAccess() {
         </div>
       ) : (
         <div className="text-lg">
-          <p><span className="font-bold">AccountID:</span> {response.data.accountID}</p>
           <p><span className="font-bold">Email:</span> {response.data.email}</p>
-          <p><span className="font-bold">RoleID:</span> {response.data.roleID}</p>
+          <p><span className="font-bold">Role:</span> {response.data.roleName}</p>
+          <p><span className="font-bold">Contract Type:</span> {response.data.contractType}</p>
+          <p><span className="font-bold">EmploymentType:</span> {response.data.employmentType}</p>
+          <p><span className="font-bold">Hired Date:</span> {response.data.hireDate.slice(0, 10)}</p>
           <br/>
         </div>
       )}
