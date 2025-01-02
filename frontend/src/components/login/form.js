@@ -102,7 +102,7 @@ export default function Form ({
                     >
                         Login
                     </button> */}
-                    <button type="submit" className="bg-foreground text-background">Login</button>
+                    <button type="submit" className="bg-foreground text-background w-20 p-2 rounded-lg hover:ring-2 hover:ring-[var(--primary)]">Login</button>
                 </div>
             </form>
         </div>

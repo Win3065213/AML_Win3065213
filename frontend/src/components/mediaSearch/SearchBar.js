@@ -64,7 +64,7 @@ export default function SearchBar({ onSearch }) {
                 </div>
             </div>
             {isAdvanced && (
-                <div className="space-y-4 mt-2 p-4 bg-gray-800 rounded">
+                <div className="space-y-4 mt-2 p-4 glass dark:bg-gray-800 rounded">
                     <div>
                         <div>Search By:</div>
                         <RadioButton
