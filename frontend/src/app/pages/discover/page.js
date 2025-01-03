@@ -5,7 +5,7 @@ import SearchBar from '@/components/mediaSearch/SearchBar'
 import Card from '@/components/mediaSearch/MediaCards'
 import axios from 'axios'
 
-export default function Home() {
+export default function Media() {
   const [mediaList, setMediaList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useState(null);
@@ -73,8 +73,8 @@ export default function Home() {
       ) : (
         <div>
           <div className='flex space-x-2 items-center mt-4'>
-            <label className="text-lg font-medium">Sort by:</label>
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="w-[180px] p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-black">
+            <p className="text-lg font-medium">Sort by:</p>
+            <select aria-label="sorting options" value={sortBy} onChange={(e) => setSortBy(e.target.value)}className="w-[180px] p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-black">
               <option value="mediaID">Default</option>
               <option value="mediaName">Title</option>
               <option value="creator">Creator</option>

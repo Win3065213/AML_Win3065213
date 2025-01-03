@@ -111,7 +111,7 @@ export default function Home() {
             }} />
             
             <div>
-                <button onClick={registerUser} className="bg-foreground text-background">Register</button>
+                <button onClick={registerUser} className="bg-foreground text-background w-20 p-2 rounded-lg hover:ring-2 hover:ring-[var(--primary)]">Register</button>
             </div>
         </form>
       </div>

@@ -56,7 +56,7 @@ export default function SearchBar({ onSearch }) {
                     placeholder={isAdvanced && searchBy != "all" ? `Enter ${searchBy}` :"Enter title, creator, publisher"}
                     className="flex-grow text-black p-3 border-4 border-primary rounded"
                     />
-                <button className="w-28 bg-primary p-3 rounded font-bold" type="submit">Search</button>
+                <button className="w-28 bg-primary text-black p-3 rounded font-bold" type="submit">Search</button>
                 <div className="w-full md:w-auto md:ml-auto mt-2 md:mt-0 flex justify-end">
                     <button type="button" onClick={() => setAdvanced(!isAdvanced)} className="w-45 p-3 rounded border-4 border-primary font-bold">
                         {isAdvanced ? 'Simple Search' : 'Advanced Search'}
@@ -64,7 +64,7 @@ export default function SearchBar({ onSearch }) {
                 </div>
             </div>
             {isAdvanced && (
-                <div className="space-y-4 mt-2 p-4 bg-gray-800 rounded">
+                <div className="space-y-4 mt-2 p-4 glass dark:bg-gray-800 rounded">
                     <div>
                         <div>Search By:</div>
                         <RadioButton
