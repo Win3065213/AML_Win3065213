@@ -1,23 +1,6 @@
 const pool = require("../database");
 const bcrypt = require('bcryptjs');
 
-// const posts = [
-//     {
-//         username: "User 1",
-//         password: "asd123"
-//     },
-//     {
-//         username: "User 2",
-//         password: "qwerty"
-//     }
-// ]
-
-// const users = []
-
-// exports.getAllPosts = async() => {
-//     return users;
-// }
-
 exports.findUser = async (email) => {
     // const user = users.find(user => user.email == email);
     // return user;
@@ -31,7 +14,7 @@ exports.findUser = async (email) => {
             return null;
         }
     } catch (error) {
-        console.error("Error in finding user.");
+        // console.error("Error in finding user.");
         throw error;
     }
 }
@@ -47,7 +30,7 @@ exports.findRole = async (role, isID = false) => {
             return null;
         }
     } catch (error) {
-        console.error("Error in finding role.");
+        // console.error("Error in finding role.");
         throw error;
     }
 }
@@ -67,7 +50,7 @@ exports.registerUser = async (email, password) => {
         return result.affectedRows > 0;
     }
     catch (error) {
-        console.error("Error in user registration.");
+        // console.error("Error in user registration.");
         throw error
     }
 }
@@ -78,7 +61,7 @@ exports.checkPassword = async (user, password) => {
         return result;
     }
     catch (error) {
-        console.error("Error in checking password.");
+        // console.error("Error in checking password.");
         throw error
     }
 }

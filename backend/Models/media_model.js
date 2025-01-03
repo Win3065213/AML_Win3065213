@@ -40,7 +40,7 @@ exports.getMedia = async (value, isAdvanced, searchBy, mediaTypes) => {
 
     if (!isAdvanced) {
         // console.log("Simple Search");
-        query += '(mediaName LIKE ? OR creator LIKE ? OR publisher LIKE ?)';
+        query += '(m.mediaName LIKE ? OR m.creator LIKE ? OR m.publisher LIKE ?)';
         params.push(`%${value}%`, `%${value}%`, `%${value}%`);
         // console.log("Params check: ", params);
     } else {

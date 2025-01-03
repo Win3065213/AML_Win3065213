@@ -13,7 +13,7 @@ export default function Card({ mediaList }) {
                                                                 p-4 rounded-lg
                                                                 hover:shadow-lg hover:shadow-neutral-500">
                                 <h3 className="text-3xl font-bold">{media.mediaName}</h3>
-                                <p><span className="font-semibold">Author:</span> {media.creator}</p>
+                                <p><span className="font-semibold">Creator:</span> {media.creator}</p>
                                 <p><span className="font-semibold">Publisher:</span> {media.publisher}</p>
                                 <p><span className="font-semibold">Type:</span> {media.mediaType[0].toUpperCase()}{media.mediaType.slice(1)}</p>
                                 <p><span className="font-semibold">Year:</span> {media.year}</p>

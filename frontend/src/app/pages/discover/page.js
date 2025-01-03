@@ -9,20 +9,8 @@ export default function Home() {
   const [mediaList, setMediaList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useState(null);
+  const [sortBy, setSortBy] = useState('Default');
 
-  // const mockMediaData = [
-  //   { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee", type: "book", year: 1960, isbn: "9780446310789", publisher: "J. B. Lippincott & Co." },
-  //   { id: 2, title: "1984", author: "George Orwell", type: "book", year: 1949, isbn: "9780451524935", publisher: "Secker & Warburg" },
-  //   { id: 3, title: "The Great Gatsby", author: "F. Scott Fitzgerald", type: "book", year: 1925, isbn: "9780743273565", publisher: "Charles Scribner's Sons" },
-  //   { id: 4, title: "Pride and Prejudice", author: "Jane Austen", type: "book", year: 1813, isbn: "9780141439518", publisher: "T. Egerton, Whitehall" },
-  //   { id: 5, title: "The Catcher in the Rye", author: "J.D. Salinger", type: "book", year: 1951, isbn: "9780316769174", publisher: "Little, Brown and Company" },
-  //   { id: 6, title: "National Geographic", author: "Various", type: "periodical", year: 2023, isbn: "", publisher: "National Geographic Partners" },
-  //   { id: 7, title: "Scientific American", author: "Various", type: "periodical", year: 2023, isbn: "", publisher: "Springer Nature" },
-  //   { id: 8, title: "The Lord of the Rings", author: "J.R.R. Tolkien", type: "audiobook", year: 1954, isbn: "9780618640157", publisher: "George Allen & Unwin" },
-  //   { id: 9, title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling", type: "ebook", year: 1997, isbn: "9780747532699", publisher: "Bloomsbury" },
-  //   { id: 10, title: "The Hobbit", author: "J.R.R. Tolkien", type: "book", year: 1937, isbn: "9780547928227", publisher: "George Allen & Unwin" },
-  // ];
-  
   const startURL = "http://localhost:8000/media/all"
   const searchURL = "http://localhost:8000/media/search"
   const handleSearch = (params) => {
@@ -60,6 +48,17 @@ export default function Home() {
     setIsLoading(false);
   }, [searchParams]);
   
+  useEffect(() => {
+    if (mediaList.length > 0) {
+      const sortedResults = [...mediaList].sort((a, b) => {
+        if (a[sortBy] < b[sortBy]) return -1;
+        if (a[sortBy] > b[sortBy]) return 1;
+        return 0;
+      });
+      setMediaList(sortedResults);
+    }
+  }, [sortBy]);
+
   // console.log("send data: ", mediaList)
   
   return (
@@ -73,7 +72,17 @@ export default function Home() {
         </div>
       ) : (
         <div>
-            <Card mediaList={mediaList}/>
+          <div className='flex space-x-2 items-center mt-4'>
+            <label className="text-lg font-medium">Sort by:</label>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="w-[180px] p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-black">
+              <option value="mediaID">Default</option>
+              <option value="mediaName">Title</option>
+              <option value="creator">Creator</option>
+              <option value="publisher">Publisher</option>
+              <option value="year">Year</option>
+            </select>
+          </div>
+          <Card mediaList={mediaList}/>
         </div>
       )}
     </main>
