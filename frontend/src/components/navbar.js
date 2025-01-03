@@ -40,7 +40,7 @@ export default function Navbar({ login, role }) {
         links = [
             {
                 name: "Home",
-                href: "#home"
+                href: "/pages/home"
             },
             {
                 name: "Media",
