@@ -9,7 +9,6 @@ export default function Form ({
     setEmail,
     setPassword
 }) {
-    // these seems extras
     const [error, setError] = useState('');
 
     const onSubmit = async (e) => {
@@ -76,11 +75,9 @@ export default function Form ({
                     </div>
                 )}
 
-            {/* <form onSubmit = {onSubmit}> */}
                 <input
                     type="text"
                     placeholder="Email"
-                    //className="border w-full h-15 px-5 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-primary rounded-lg bg-white"
                     value={email}
                     onChange={(e) => {
                         setEmail(e.target.value)
@@ -89,21 +86,15 @@ export default function Form ({
                 <input
                     type="password"
                     placeholder="Password"
-                    // className="border w-full h-15 px-5 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-elanco rounded-lg bg-white"
                     value={password}
                     onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
 
                 <div>
-                    {/* <button
-                        type="submit"
-                        className="mt-4 border-2 border-elanco px-10 py-2 w-full hover:bg-elanco hover:text-white duration-200 rounded-lg"
-                    >
-                        Login
-                    </button> */}
-                    <button type="submit" className="bg-foreground text-background">Login</button>
+                    <button type="submit" className="bg-foreground text-background w-20 p-2 rounded-lg hover:ring-2 hover:ring-[var(--primary)]">Login</button>
                 </div>
+                <a href="/pages/home" className="mt-2 hover:underline">Back to Home Page</a>
             </form>
         </div>
     )

@@ -2,7 +2,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import axios from "axios";
 import { getServerSession } from "next-auth";
 
-export default async function UserAccess() {
+export default async function MemberAccess() {
 
   const session = await getServerSession(authOptions);
   
@@ -26,7 +26,7 @@ export default async function UserAccess() {
 
   return (
     <div className="p-7">
-      <div className="text-3xl">User Data (except hashed password)</div>
+      <div className="text-3xl">Member Data (except hashed password)</div>
       {response.error ? (
         <div className="bg-red-500 bg-opacity-50 rounded-lg ring-red-500 ring-2 p-3 my-2">
           {response?.error}
@@ -35,11 +35,11 @@ export default async function UserAccess() {
         <div className="text-lg">
           <p><span className="font-bold">AccountID:</span> {response.data.accountID}</p>
           <p><span className="font-bold">Email:</span> {response.data.email}</p>
-          <p><span className="font-bold">RoleID:</span> {response.data.roleID}</p>
+          <p><span className="font-bold">Role:</span> {response.data.roleName}</p>
           <br/>
         </div>
       )}
-      <p>User Data Access. The page requires member role to access data.</p>
+      <p>Member Data Access. The page requires member role to access data.</p>
       <p>Purpose: To simulate data request that requires token.</p>
     </div>
   );

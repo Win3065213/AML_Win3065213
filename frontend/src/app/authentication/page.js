@@ -87,7 +87,6 @@ export default function Home() {
           <input
             type="email"
             placeholder="Email"
-            //className="border w-full h-15 px-5 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-primary rounded-lg bg-white"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
@@ -96,7 +95,6 @@ export default function Home() {
           <input
             type="password"
             placeholder="Password"
-            // className="border w-full h-15 px-5 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-elanco rounded-lg bg-white"
             value={pwd}
             onChange={(e) => {
               setPassword(e.target.value)
@@ -105,14 +103,14 @@ export default function Home() {
           <input
             type="password"
             placeholder="Retype Password"
-            // className="border w-full h-15 px-5 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-elanco rounded-lg bg-white"
             onChange={(e) => {
               setRePWD(e.target.value);
             }} />
             
             <div>
-                <button onClick={registerUser} className="bg-foreground text-background">Register</button>
+                <button onClick={registerUser} className="bg-foreground text-background w-20 p-2 rounded-lg hover:ring-2 hover:ring-[var(--primary)]">Register</button>
             </div>
+            <a href="/pages/home" className="mt-2 hover:underline">Back to Home Page</a>
         </form>
       </div>
 

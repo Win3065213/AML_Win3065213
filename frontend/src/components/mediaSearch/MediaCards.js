@@ -3,10 +3,10 @@ export default function Card({ mediaList }) {
     return (
         <div className="mt-5">
             {mediaList.length === 0 ? (
-                <p className="text-xl font-bold">No media found.</p>
+                <h2 className="text-xl font-bold">No media found.</h2>
                 ) : (
                 <div>
-                    <p className="text-xl font-bold pb-3">{mediaList.length} media found.</p>
+                    <h2 className="text-xl font-bold pb-3">{mediaList.length} media found.</h2>
                     <ul className="space-y-4">
                         {mediaList.map((media) => (
                             <li key={media.mediaID} className=" border-2 border-gray-500 dark:border-current

@@ -39,9 +39,6 @@ exports.registerUser = async (email, password) => {
     try
     {
         const hashedPassword = await bcrypt.hash(password,10);
-        // const user = { email , password: hashedPassword};
-        // users.push(user);
-        // return users;
 
         const sqlRegister = "INSERT INTO account (email, password, roleID) VALUES (?,?,?)";
         const memberRole = await this.findRole("member");

@@ -16,7 +16,7 @@ exports.getMediaList = async () => {
             m.publisher,
             m.year,
             types.mediaType
-            FROM media m JOIN types ON m.typeID = types.typeID`;
+            FROM media m JOIN media_types types ON m.typeID = types.typeID`;
         const [mediaList] = await pool.execute(mediaSQL);
         return mediaList;
     }
@@ -35,7 +35,7 @@ exports.getMedia = async (value, isAdvanced, searchBy, mediaTypes) => {
         m.publisher,
         m.year,
         types.mediaType
-        FROM media m JOIN types ON m.typeID = types.typeID WHERE `;
+        FROM media m JOIN media_types types ON m.typeID = types.typeID WHERE `;
     const params = [];
 
     if (!isAdvanced) {
