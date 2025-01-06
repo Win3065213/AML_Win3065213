@@ -51,6 +51,7 @@ export default function SearchBar({ onSearch }) {
             <div className="flex flex-wrap space-x-2">
                 <input
                     type="text"
+                    aria-label="search box"
                     value={searchValue}
                     onChange={(e) => setValue(e.target.value)}
                     placeholder={isAdvanced && searchBy != "all" ? `Enter ${searchBy}` :"Enter title, creator, publisher"}
