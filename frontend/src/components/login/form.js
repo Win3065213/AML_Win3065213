@@ -77,6 +77,7 @@ export default function Form ({
 
                 <input
                     type="text"
+                    aria-label="email field"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => {
@@ -85,6 +86,7 @@ export default function Form ({
 
                 <input
                     type="password"
+                    aria-label="password field"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => {

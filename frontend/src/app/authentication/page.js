@@ -86,6 +86,7 @@ export default function Home() {
           )}
           <input
             type="email"
+            aria-label="email field"
             placeholder="Email"
             value={email}
             onChange={(e) => {
@@ -94,6 +95,7 @@ export default function Home() {
             
           <input
             type="password"
+            aria-label="password field"
             placeholder="Password"
             value={pwd}
             onChange={(e) => {
@@ -102,6 +104,7 @@ export default function Home() {
             
           <input
             type="password"
+            aria-label="retype password field"
             placeholder="Retype Password"
             onChange={(e) => {
               setRePWD(e.target.value);
