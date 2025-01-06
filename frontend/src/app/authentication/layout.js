@@ -6,7 +6,7 @@ export default async function AuthLayout({ children }) {
   const session = await getServerSession(authOptions)
   // console.log(session)
   if (session?.role == "member") {
-    redirect("/user")
+    redirect("/member")
   }
   if (session?.role == "sys_admin") {
     redirect("/sys_admin")

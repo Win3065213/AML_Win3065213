@@ -10,7 +10,7 @@ export default function Navbar({ login, role }) {
         links = [
             {
                 name: "Home",
-                href: "/user"
+                href: "/member"
             },
             {
                 name: "Media",
@@ -18,7 +18,7 @@ export default function Navbar({ login, role }) {
             },
             {
                 name: "Access",
-                href: "/user/access"
+                href: "/member/access"
             },
         ];
     } else if (role == "sys_admin") {
