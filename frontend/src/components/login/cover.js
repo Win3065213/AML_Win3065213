@@ -22,8 +22,8 @@ export default function Cover({
                       ${!isInitialRender ? 'transition-all duration-1000 ease-in-out' : ''}
                       ${clicked ? 'animate-fade-out opacity-0 pointer-events-none' : 'animate-fade-in opacity-100'}`}>
 
-            <div className="text-5xl font-bold">Welcome to AML</div>
-            <div className="text-3xl font-semibold">{isRegister ? "Register" : "Login"} Page</div>
+            <h1 className="text-5xl font-bold">Welcome to AML</h1>
+            <h2 className="text-3xl font-semibold">{isRegister ? "Register" : "Login"} Page</h2>
             <div>
                 {isRegister ? "Already created account?" : "Haven't created account?"} Click here
             </div>
