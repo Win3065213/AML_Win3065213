@@ -21,4 +21,5 @@ Documentation Folder:
     - Images for Defect Report
     - Performance Testing
     - Unit Testing
-2. API Endpoints.md
+3. API Endpoints.md
+4. ADRs
